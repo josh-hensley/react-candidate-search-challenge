@@ -1,8 +1,8 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { searchGithub } from '../api/API';
 import Candidate from '../interfaces/Candidate.interface';
 
-const CandidateSearch = async () => {
+const CandidateSearch = () => {
   let index = 0;
   const [userArray, setUserArray] = useState<Candidate[]>([]);
   const [currentCandidate, setCandidate] = useState<Candidate>({
@@ -17,31 +17,31 @@ const CandidateSearch = async () => {
   const getUsers = async () => {
     try {
       const userData = await searchGithub();
-      setUserArray(userData.map(
-        (i: { 
-          name: string|undefined, 
-          login: string|undefined, 
-          location: string|undefined, 
-          avatar_url: string|undefined, 
-          email: string|undefined, 
-          html_url: string|undefined, 
-          company: string|undefined }
-        ) => {
-          return {
-            name: i.name ? i.name : '',
-            login: i.login ? i.login : '',
-            location: i.location ? i.location : '',
-            avatar_url: i.avatar_url ? i.avatar_url : '',
-            email: i.email ? i.email : '',
-            html_url: i.html_url ? i.html_url : '',
-            company: i.company ? i.company : ''
-          }
+      const users: Candidate[] = userData.map((
+        i: {
+          name: string | undefined,
+          login: string | undefined,
+          location: string | undefined,
+          avatar_url: string | undefined,
+          email: string | undefined,
+          html_url: string | undefined,
+          company: string | undefined
+        }) => {
+        return {
+          name: i.name ? i.name : '',
+          login: i.login ? i.login : '',
+          location: i.location ? i.location : '',
+          avatar_url: i.avatar_url ? i.avatar_url : '',
+          email: i.email ? i.email : '',
+          html_url: i.html_url ? i.html_url : '',
+          company: i.company ? i.company : ''
         }
-      ));
-      setCandidate(userArray[0]);
+      });
+      setUserArray(users);
+      console.log(users);
     }
     catch (err) {
-      console.log(err);
+      console.log('Error getting users: ', err);
     }
   }
   const updateUser = () => {
@@ -55,14 +55,16 @@ const CandidateSearch = async () => {
   const handleClickMinus = () => {
     updateUser();
   };
-  useEffect(()=>{
-    if (!userArray){
-      getUsers();
-    }
-    else {
-      updateUser();
-    }
-  });
+  getUsers();
+  // useEffect(() => {
+  //   if (!userArray) {
+  //     getUsers();
+  //     updateUser();
+  //   }
+  //   else {
+  //     updateUser();
+  //   }
+  // });
   return (
     <>
       <h1>CandidateSearch</h1>
