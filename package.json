@@ -8,7 +8,8 @@
     "build": "tsc && vite build",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
-    "start:dev": "concurrently \"npx nodemon\" && \" npm run build && npm run dev\""
+    "start:dev": "concurrently \"npx nodemon\" && \" npm run build && npm run dev\"",
+    "start": "npm dev"
   },
   "nodemonConfig": {
     "watch": ["src"],
