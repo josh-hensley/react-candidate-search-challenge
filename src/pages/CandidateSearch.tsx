@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { searchGithub } from '../api/API';
 import Candidate from '../interfaces/Candidate.interface';
 
@@ -55,16 +55,15 @@ const CandidateSearch = () => {
   const handleClickMinus = () => {
     updateUser();
   };
-  getUsers();
-  // useEffect(() => {
-  //   if (!userArray) {
-  //     getUsers();
-  //     updateUser();
-  //   }
-  //   else {
-  //     updateUser();
-  //   }
-  // });
+  useEffect(() => {
+    if (!userArray) {
+      getUsers();
+      updateUser();
+    }
+    else {
+      updateUser();
+    }
+  });
   return (
     <>
       <h1>CandidateSearch</h1>
