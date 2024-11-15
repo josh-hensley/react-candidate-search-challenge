@@ -9,7 +9,7 @@
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
     "start:dev": "npx nodemon",
-    "start": "npm run dev"
+    "start": "npm run build && npm run dev"
   },
   "nodemonConfig": {
     "watch": ["src"],
