@@ -1,6 +1,4 @@
 interface Candidate {
-    avatar: string | undefined;
-    username: ReactNode;
     name: string,
     login: string, 
     location: string,

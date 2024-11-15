@@ -2,36 +2,67 @@ import { useState, useEffect } from 'react';
 import { searchGithub } from '../api/API';
 import Candidate from '../interfaces/Candidate.interface';
 
-const CandidateSearch = () => {
+const CandidateSearch = async () => {
+  let index = 0;
+  const [userArray, setUserArray] = useState<Candidate[]>([]);
+  const [currentCandidate, setCandidate] = useState<Candidate>({
+    name: 'name',
+    login: 'login',
+    location: 'location',
+    avatar_url: 'img',
+    email: 'email',
+    html_url: 'url',
+    company: 'company'
+  });
   const getUsers = async () => {
     try {
-      const users = await searchGithub();
-      setCandidate(users[0]);
+      const userData = await searchGithub();
+      setUserArray(userData.map(
+        (i: { 
+          name: string|undefined, 
+          login: string|undefined, 
+          location: string|undefined, 
+          avatar_url: string|undefined, 
+          email: string|undefined, 
+          html_url: string|undefined, 
+          company: string|undefined }
+        ) => {
+          return {
+            name: i.name ? i.name : '',
+            login: i.login ? i.login : '',
+            location: i.location ? i.location : '',
+            avatar_url: i.avatar_url ? i.avatar_url : '',
+            email: i.email ? i.email : '',
+            html_url: i.html_url ? i.html_url : '',
+            company: i.company ? i.company : ''
+          }
+        }
+      ));
+      setCandidate(userArray[0]);
     }
-    catch(err) {
+    catch (err) {
       console.log(err);
     }
   }
-  const [currentCandidate, setCandidate] = useState<Candidate>({
-    name: 'string',
-    login: 'string',
-    location: 'string',
-    avatar_url: 'string',
-    email: 'string',
-    html_url: 'string',
-    company: 'string'
-  });
-  useEffect(()=>{
-    getUsers();
-  }, [])
- 
-  const handleClickPlus = () => {
+  const updateUser = () => {
+    index++;
+    setCandidate(userArray[index]);
+  }
 
+  const handleClickPlus = () => {
+    updateUser();
   };
   const handleClickMinus = () => {
-
+    updateUser();
   };
-
+  useEffect(()=>{
+    if (!userArray){
+      getUsers();
+    }
+    else {
+      updateUser();
+    }
+  });
   return (
     <>
       <h1>CandidateSearch</h1>
