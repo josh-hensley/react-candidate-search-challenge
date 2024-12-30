@@ -4,10 +4,12 @@
 
 ## Description
 
+![home-page-screenshot](./public/home-page-screenshot.png)
+![saved-candidates-page-screenshot](./public/saved-candidates-page-screenshot.png)
+
 This app uses github's api to randomly search for developer's repos.
 
 ## Table of Contents
-
 
 * [Installation](#Installation)
 * [Usage](#Usage)
@@ -23,7 +25,7 @@ To run on local machine:  This app requires [node.js](https://nodejs.org/en/down
 
 ## <a name="Usage"></a>Usage
 
-If running from your local machine:  Run `npm start` from the root folder.  Otherwise go to this link.  Click the plus to save a candidate, click the minus to skip to the next. Use the nav bar to switch to the saved candidates page to view previously saved candidates.
+If running from your local machine:  Run `npm start` from the root folder.  Otherwise go to this (link)[https://react-candidate-search-challenge-1.onrender.com].  Click the plus to save a candidate, click the minus to skip to the next. Use the nav bar to switch to the saved candidates page to view previously saved candidates saved into localstorage.
 
 ## <a name="license"></a>License
 
