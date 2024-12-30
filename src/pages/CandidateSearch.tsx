@@ -37,6 +37,18 @@ const CandidateSearch = () => {
     }
   }
 
+  const saveCandidate = () => {
+    if (currentCandidate) {
+      const storage = localStorage.getItem('potentialCandidates') ? localStorage.getItem('potentialCandidates') : '';
+      const candidateArr: Candidate[] = storage ? JSON.parse(storage as string) : [];
+      localStorage.setItem('potentialCandidates', JSON.stringify([...candidateArr, currentCandidate]));
+      console.log('Candidate Saved: ', currentCandidate.login);
+    }
+    else {
+      console.log('No Candidate to Save!');
+    }
+  }
+
   useEffect(() => {
     if (userArray.length === 0) {
       getUsers();
@@ -53,34 +65,47 @@ const CandidateSearch = () => {
 
   const handleClickPlus = () => {
     if (index < userArray.length - 1) {
+      saveCandidate();
       setIndex(index + 1);
+    }
+    else {
+      saveCandidate();
+      getUsers();
     }
   };
 
   const handleClickMinus = () => {
-    if (index > 0) {
-      setIndex(index - 1);
+    if (index < userArray.length - 1) {
+      setIndex(index + 1);
+    }
+    else {
+      getUsers();
     }
   };
 
   return (
     <>
       <h1>CandidateSearch</h1>
-      {currentCandidate ? ( // Check if currentCandidate is not null
-        <>
-          <h3>{currentCandidate.name}</h3>
-          <img src={currentCandidate.avatar_url} alt="" />
-          <p>{currentCandidate.login}</p>
-          <p>{currentCandidate.location}</p>
-          <p>{currentCandidate.email}</p>
-          <p>{currentCandidate.html_url}</p>
-          <p>{currentCandidate.company}</p>
-        </>
-      ) : (
-        <p>Loading candidate information...</p> // Show loading message or placeholder
-      )}
-      <button type="button" onClick={handleClickMinus}>-</button>
-      <button type="button" onClick={handleClickPlus}>+</button>
+      <div className='flex-container justify-center'>
+        {currentCandidate ? ( // Check if currentCandidate is not null
+          <div className='card'>
+            <img src={currentCandidate.avatar_url} alt="" />
+            <h3>{currentCandidate.name} ({currentCandidate.login})</h3>
+            <p>{currentCandidate.location}</p>
+            <p>{currentCandidate.email}</p>
+            <p>{currentCandidate.html_url}</p>
+            <p>{currentCandidate.company}</p>
+          </div>
+        ) : (
+          <p>Loading candidate information...</p> // Show loading message or placeholder
+        )}
+      </div>
+      <div className="flex-container justify-center">
+        <div className="btn-container space-between">
+          <button type="button" onClick={handleClickMinus}>-</button>
+          <button type="button" onClick={handleClickPlus}>+</button>
+        </div>
+      </div>
     </>
   );
 };

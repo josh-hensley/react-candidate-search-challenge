@@ -19,7 +19,7 @@ This app uses github's api to randomly search for developer's repos.
 
 ## <a name="Installation"></a>Installation
 
-To run on you local machine:  This app requires node.js.  To install run `npm i` from the root folder.
+To run on local machine:  This app requires [node.js](https://nodejs.org/en/download).  To install run `npm i` from the root folder.
 
 ## <a name="Usage"></a>Usage
 

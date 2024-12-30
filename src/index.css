@@ -41,13 +41,14 @@ body {
 h1 {
   font-size: 3.2em;
   line-height: 1.1;
+  text-align: center;
 }
 
 button {
-  border-radius: 8px;
+  border-radius: 50%;
   border: 1px solid transparent;
   padding: 0.6em 1.2em;
-  font-size: 1em;
+  font-size: 1.5em;
   font-weight: 500;
   font-family: inherit;
   background-color: #1a1a1a;
@@ -60,6 +61,38 @@ button:hover {
 button:focus,
 button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
+}
+
+.flex-container {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  text-align: center;
+}
+
+.btn-container {
+  display: flex;
+  width: 250px;
+  margin-top: 1em;
+}
+
+.justify-center {
+  justify-content: center;
+}
+
+.space-between {
+  justify-content: space-between;
+}
+
+.card {
+  background-color: #000;
+  border-radius: 2em;
+  width: 300px;
+}
+
+img {
+  border-radius: 2em 2em 0 0;
+  width: 300px;
 }
 
 @media (prefers-color-scheme: light) {
@@ -96,6 +129,7 @@ tbody tr:nth-child(odd) {
 
 .nav {
   display: flex;
+  width: 100vw;
   justify-content: flex-start;
   padding: 1em 2em;
 }
