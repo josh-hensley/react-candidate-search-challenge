@@ -90,6 +90,10 @@ button:focus-visible {
   width: 300px;
 }
 
+.thumbnail {
+  max-width: 50%;
+}
+
 img {
   border-radius: 2em 2em 0 0;
   width: 300px;

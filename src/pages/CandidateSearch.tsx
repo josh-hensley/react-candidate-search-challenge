@@ -90,11 +90,11 @@ const CandidateSearch = () => {
         {currentCandidate ? ( // Check if currentCandidate is not null
           <div className='card'>
             <img src={currentCandidate.avatar_url} alt="" />
-            <h3>{currentCandidate.name} ({currentCandidate.login})</h3>
-            <p>{currentCandidate.location}</p>
-            <p>{currentCandidate.email}</p>
+            <h3>{currentCandidate.name ? currentCandidate.name : ''} (<em>{currentCandidate.login}</em>)</h3>
+            <p>Location: {currentCandidate.location}</p>
+            <p>Email: <a href={`mailto: ${currentCandidate.email}`}>{currentCandidate.email}</a></p>
+            <p>Company: {currentCandidate.company}</p>
             <p>{currentCandidate.html_url}</p>
-            <p>{currentCandidate.company}</p>
           </div>
         ) : (
           <p>Loading candidate information...</p> // Show loading message or placeholder
